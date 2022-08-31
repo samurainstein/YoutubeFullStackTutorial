@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EmployeeService from "../Services/EmployeeService";
 
 export default function CreateEmployeeComponent() {
   const [firstName, setFirstName] = useState("");
@@ -9,15 +10,15 @@ export default function CreateEmployeeComponent() {
   let navigate = useNavigate();
 
   const changeFirstNameHandler = (event) => {
-    setFirstName({ firstName: event.target.value });
+    setFirstName(event.target.value);
   };
 
   const changeLastNameHandler = (event) => {
-    setLastName({ lastName: event.target.value });
+    setLastName(event.target.value);
   };
 
   const changeEmailHandler = (event) => {
-    setEmailId({ emailId: event.target.value });
+    setEmailId(event.target.value);
   };
 
   const saveEmployee = (event) => {
@@ -28,6 +29,9 @@ export default function CreateEmployeeComponent() {
       emailId: emailId,
     };
     console.log("employee => " + JSON.stringify(employee));
+    EmployeeService.createEmployee(employee).then((res) => {
+      navigate("/");
+    });
   };
 
   const cancel = (event) => {
