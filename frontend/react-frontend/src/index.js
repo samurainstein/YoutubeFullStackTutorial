@@ -6,6 +6,7 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ListEmployeeComponent from "./Components/ListEmployeeComponent";
 import CreateEmployeeComponent from "./Components/CreateEmployeeComponent";
+import UpdateEmployeeComponent from "./Components/UpdateEmployeeComponent";
 
 const rootElement = document.getElementById("root");
 render(
@@ -14,6 +15,7 @@ render(
       <Route path="/" element={<App />} />
       <Route path="employees" element={<ListEmployeeComponent />} />
       <Route path="add-employee" element={<CreateEmployeeComponent />} />
+      <Route path="update-employee/:id" element={<UpdateEmployeeComponent />} />
     </Routes>
   </BrowserRouter>,
   rootElement

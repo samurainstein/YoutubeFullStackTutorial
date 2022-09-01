@@ -20,6 +20,10 @@ export default function ListEmployeeComponent() {
     navigate("/add-employee");
   };
 
+  function editEmployee(id) {
+    navigate(`/update-employee/${id}`);
+  }
+
   return (
     <div>
       <h2 className="text-center">Employee List</h2>
@@ -44,6 +48,15 @@ export default function ListEmployeeComponent() {
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
                 <td>{employee.emailId}</td>
+                <td>
+                  <button
+                    // TODO Not sure if this is correct
+                    onClick={() => editEmployee(employee.id)}
+                    className="btn btn-info"
+                  >
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
