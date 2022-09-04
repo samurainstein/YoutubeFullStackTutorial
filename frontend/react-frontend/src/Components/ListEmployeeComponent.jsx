@@ -9,7 +9,7 @@ export default function ListEmployeeComponent() {
   const [employees, setEmployees] = useState([]);
   let navigate = useNavigate();
 
-  //TODO Not sure if this is right
+  //TODO: Not sure if this is right
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
       setEmployees(res.data);
@@ -50,7 +50,7 @@ export default function ListEmployeeComponent() {
                 <td>{employee.emailId}</td>
                 <td>
                   <button
-                    // TODO Not sure if this is correct
+                    // TODO: Not sure if this is correct
                     onClick={() => editEmployee(employee.id)}
                     className="btn btn-info"
                   >

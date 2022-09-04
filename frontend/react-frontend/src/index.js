@@ -15,7 +15,10 @@ render(
       <Route path="/" element={<App />} />
       <Route path="employees" element={<ListEmployeeComponent />} />
       <Route path="add-employee" element={<CreateEmployeeComponent />} />
-      <Route path="update-employee/:id" element={<UpdateEmployeeComponent />} />
+      <Route
+        path="update-employee/:employeeId"
+        element={<UpdateEmployeeComponent />}
+      />
     </Routes>
   </BrowserRouter>,
   rootElement

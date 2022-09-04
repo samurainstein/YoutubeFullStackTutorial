@@ -1,13 +1,25 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EmployeeService from "../Services/EmployeeService";
 
 export default function UpdateEmployeeComponent() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailId, setEmailId] = useState("");
+  let params = useParams();
+  let employeeId = params.employeeId;
   let navigate = useNavigate();
+
+  // The empty array 2nd parameter makes this function like componentDidMount()
+  useEffect(() => {
+    EmployeeService.getEmployeeById(employeeId).then((res) => {
+      let employee = res.data;
+      setFirstName(employee.firstName);
+      setLastName(employee.lastName);
+      setEmailId(employee.setEmailId);
+    });
+  }, []);
 
   const changeFirstNameHandler = (event) => {
     setFirstName(event.target.value);
@@ -21,7 +33,7 @@ export default function UpdateEmployeeComponent() {
     setEmailId(event.target.value);
   };
 
-  const saveEmployee = (event) => {
+  const updateEmployee = (event) => {
     event.preventDefault();
     let employee = {
       firstName: firstName,
@@ -63,16 +75,17 @@ export default function UpdateEmployeeComponent() {
                     value={lastName}
                     onChange={changeLastNameHandler}
                   />
-                  <label>Email Address:</label>
+                  <label>Email:</label>
                   <input
-                    placeholder="Email Address"
+                    placeholder="Email"
                     name="emailId"
                     className="form-control"
-                    value={emailId}
+                    //TODO: Line below is causing a warning in devtools console
+                    // value={emailId}
                     onChange={changeEmailHandler}
                   />
                 </div>
-                <button className="btn btn-success" onClick={saveEmployee}>
+                <button className="btn btn-success" onClick={updateEmployee}>
                   Save
                 </button>
                 <button
