@@ -24,6 +24,13 @@ export default function ListEmployeeComponent() {
     navigate(`/update-employee/${id}`);
   }
 
+  function deleteEmployee(id) {
+    EmployeeService.deleteEmployee(id).then(res => {
+      employees.filter(employee => employee.id !== id);
+    })
+    // navigate();
+  }
+
   return (
     <div>
       <h2 className="text-center">Employee List</h2>
@@ -55,6 +62,14 @@ export default function ListEmployeeComponent() {
                     className="btn btn-info"
                   >
                     Update
+                  </button>
+                  <button
+                    // TODO: Not sure if this is correct
+                    onClick={() => deleteEmployee(employee.id)}
+                    style={{ marginLeft: "10px" }}
+                    className="btn btn-danger"
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>
