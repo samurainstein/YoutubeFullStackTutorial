@@ -40,10 +40,9 @@ export default function UpdateEmployeeComponent() {
       lastName: lastName,
       emailId: emailId,
     };
-    console.log("employee => " + JSON.stringify(employee));
-    EmployeeService.createEmployee(employee).then((res) => {
-      navigate("/");
-    });
+    EmployeeService.updateEmployee(employee, employeeId).then((res) => {
+      navigate("/employees");
+    })
   };
 
   const cancel = (event) => {
@@ -55,7 +54,7 @@ export default function UpdateEmployeeComponent() {
       <div className="container">
         <div className="row">
           <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center">Add Employee</h3>
+            <h3 className="text-center">Update Employee</h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
